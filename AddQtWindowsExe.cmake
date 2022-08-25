@@ -1,8 +1,9 @@
 # find the Qt root directory
-if(NOT Qt5Core_DIR)
-  find_package(Qt5Core REQUIRED)
+set(Qt6Core_DIR ${CMAKE_PREFIX_PATH})
+if(NOT Qt6Core_DIR)
+  find_package(Qt6Core REQUIRED)
 endif()
-get_filename_component(QT_WINDOWS_QT_ROOT "${Qt5Core_DIR}/../../.." ABSOLUTE)
+get_filename_component(QT_WINDOWS_QT_ROOT "${Qt6Core_DIR}/../../.." ABSOLUTE)
 message(STATUS "Found Qt for Windows: ${QT_WINDOWS_QT_ROOT}")
 
 set(QT_WINDOWS_QT_ROOT ${QT_WINDOWS_QT_ROOT})
