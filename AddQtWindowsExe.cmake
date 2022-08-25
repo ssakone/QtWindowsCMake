@@ -6,7 +6,7 @@ endif()
 get_filename_component(QT_WINDOWS_QT_ROOT "${Qt6Core_DIR}/../../.." ABSOLUTE)
 message(STATUS "Found Qt for Windows: ${QT_WINDOWS_QT_ROOT}")
 
-set(QT_WINDOWS_QT_ROOT ${QT_WINDOWS_QT_ROOT})
+set(QT_WINDOWS_QT_ROOT ${CMAKE_PREFIX_PATH})
 set(QT_WINDOWS_SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR})
 
 set(QBC_REPOSITORY "https://github.com/OlivierLDff/QbcInstaller.git" CACHE STRING "Repository of Qbc")
