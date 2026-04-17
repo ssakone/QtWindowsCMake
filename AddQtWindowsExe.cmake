@@ -191,18 +191,18 @@ function(add_qt_windows_exe TARGET)
       endif()
 
       # Generate qt.conf
-      # Qt 6 renamed "Qml2Imports" -> "QmlImports". A missing "Prefix" key also
-      # caused QML plugins (e.g. QtQuick.Layouts) to be searched at the Qt install
-      # prefix instead of next to the deployed exe, triggering
-      # "module X is not installed" at runtime.
+      # Starting with Qt 6.8, windeployqt deploys QML modules into a "qml/"
+      # subdirectory (instead of flat next to the exe). Pointing the QML import
+      # paths at "." therefore made Qt fail to find modules like QtQuick.Layouts
+      # with "module X is not installed". "qml/" matches the actual layout
+      # produced by windeployqt.
       set(QT_WINDOWS_QT_CONF ${CMAKE_CURRENT_BINARY_DIR}/qt.conf)
       file(WRITE ${QT_WINDOWS_QT_CONF}
         "[Paths]\n"
-        "Prefix = .\n"
-        "Plugins = .\n"
-        "Imports = .\n"
-        "QmlImports = .\n"
-        "Qml2Imports = .\n"
+        "Plugins = qml/\n"
+        "Imports = qml/\n"
+        "QmlImports = qml/\n"
+        "Qml2Imports = qml/\n"
       )
 
       # Create Custom Target
